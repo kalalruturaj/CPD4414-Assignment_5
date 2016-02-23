@@ -10,18 +10,18 @@ to set up a new database.
 The following SQL is provided for reference:
 
     CREATE TABLE users (
-       id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
-       username VARCHAR(255) NOT NULL UNIQUE,
-       passhash VARCHAR(255) NOT NULL
+        id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+        username VARCHAR(255) NOT NULL UNIQUE,
+        passhash VARCHAR(255) NOT NULL
     );
     
     CREATE TABLE posts (
         id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
-       user_id INT NOT NULL,
+        user_id INT NOT NULL,
         title VARCHAR(255) NOT NULL UNIQUE,
-       created_time DATETIME NOT NULL,
-       contents TEXT,
-       FOREIGN KEY posts(user_id) REFERENCES users(id)
+        created_time DATETIME NOT NULL,
+        contents TEXT,
+        FOREIGN KEY posts(user_id) REFERENCES users(id)
     );
     
     -- Optional Sample Data
