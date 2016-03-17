@@ -16,19 +16,43 @@
 package beans;
 
 import java.util.Date;
+import javax.faces.bean.ApplicationScoped;
+import javax.faces.bean.ManagedBean;
 
 /**
  *
- * @author Len Payne <len.payne@lambtoncollege.ca>
+ * @author Ruturaj
  */
+@ManagedBean
+@ApplicationScoped
 public class Post {
+
 
     private int id;
     private int userId;
     private String title;
     private Date createdTime;
     private String contents;
+    private User user;
+    private String username;
+    private String password;
 
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+    
     public Post(int id, int userId, String title, Date createdTime, String contents) {
         this.id = id;
         this.userId = userId;
@@ -37,6 +61,11 @@ public class Post {
         this.contents = contents;
     }
 
+      
+    public Post() {
+    }
+    
+    
     public int getId() {
         return id;
     }

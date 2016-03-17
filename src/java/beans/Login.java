@@ -20,7 +20,7 @@ import javax.faces.bean.SessionScoped;
 
 /**
  *
- * @author Len Payne <len.payne@lambtoncollege.ca>
+ * @author Ruturaj
  */
 @ManagedBean
 @SessionScoped

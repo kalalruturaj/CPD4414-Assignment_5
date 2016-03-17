@@ -25,7 +25,7 @@ import javax.faces.bean.ManagedBean;
 
 /**
  *
- * @author Len Payne <len.payne@lambtoncollege.ca>
+ * @author Ruturaj
  */
 @ManagedBean
 @ApplicationScoped
@@ -33,7 +33,17 @@ public class Posts {
 
     private List<Post> posts;
     private Post currentPost;
+    private User currentUser;
 
+    public User getCurrentUser() {
+        return currentUser;
+    }
+
+    public void setCurrentUser(User currentUser) {
+        this.currentUser = currentUser;
+    }
+    
+ 
     /**
      * No-arg Constructor -- sets up list from DB
      */
@@ -190,4 +200,52 @@ public class Posts {
         currentPost = getPostByTitle(currentPost.getTitle());
         return "viewPost";
     }
+    
+     public String deletePost(String title) {
+             
+            
+        try (Connection conn = DBUtils.getConnection()) {
+           // String passhash = DBUtils.hash(password);
+            String sql = "DELETE FROM posts WHERE title = ? ";
+            PreparedStatement pstmt = conn.prepareStatement(sql);
+            pstmt.setString(1, title);
+            System.out.println(sql);
+            pstmt.executeUpdate();
+            getPostsFromDB();
+         } catch (SQLException ex) {
+            Logger.getLogger(Users.class.getName()).log(Level.SEVERE, null, ex);
+        }
+       getPostsFromDB();
+        return "viewPost";
+    }
+     
+     public String getPostByUser(Post post, User user,String id){
+         
+         currentPost= post;
+         currentUser = user;
+         try (Connection conn = DBUtils.getConnection()) {
+           // String passhash = DBUtils.hash(password);
+            String sql = "select * from posts p JOIN users u ON p.user_id = ? ";
+            PreparedStatement pstmt = conn.prepareStatement(sql);
+            pstmt.setString(1, id);
+            System.out.println(sql);
+            pstmt.executeUpdate();
+         } catch (SQLException ex) {
+            Logger.getLogger(Users.class.getName()).log(Level.SEVERE, null, ex);
+        }
+       //getPostsFromDB();
+         
+         return "viewUserPost";
+     }
+     public Post postByUser(int id){
+         
+          
+         for (Post p : posts) {
+            if (p.getUser_id()==id) {
+                return p;
+            }
+        }
+        return null;
+     }
+   
 }

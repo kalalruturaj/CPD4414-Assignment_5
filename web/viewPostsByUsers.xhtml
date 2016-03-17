@@ -5,20 +5,19 @@
       xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
     <h:head>
         <title>#{posts.currentPost.title}</title>
+        
     </h:head>
     <h:body>
-       <h1>#{posts.currentPost.title}</h1>
+        <h1>#{posts.currentPost.title}</h1>
         <p>By #{users.getUsernameById(posts.currentPost.user_id)} at #{posts.currentPost.createdTime.toLocaleString()}</p>
         <p>#{posts.currentPost.contents}</p>
         <p></p>
-        <h:form>            
-            <c:if test="#{login.loggedIn}">
-                <h:commandButton value="Edit" action="#{posts.editPost()}" />
-            </c:if>
-            <c:if test="#{!login.loggedIn}">
-                <h:commandButton value="Login" action="login" />
-            </c:if>
-            <h:commandButton value="Return" action="index" />
+        <h:form>  
+            <p>User Id:  <h:inputText value="#{user.id}" /></p>
+            
+            
+            
+            <h:commandButton value="View Result" action="#{posts.getPostByUser(post,user,user.id)}" />
         </h:form>
     </h:body>
 </html>

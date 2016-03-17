@@ -24,7 +24,7 @@ import java.util.logging.Logger;
 
 /**
  *
- * @author Len Payne <len.payne@lambtoncollege.ca>
+ * @author Ruturaj
  */
 public class DBUtils {
 
@@ -69,11 +69,11 @@ public class DBUtils {
             Logger.getLogger(DBUtils.class.getName()).log(Level.SEVERE, null, ex);
             return null;
         }
-        String hostname = "IPRO";
+        String hostname = "localhost";
         String port = "3306";
-        String dbname = "simpleblog";
-        String username = "simpleblog";
-        String password = "February2016";
+        String dbname = "blog";
+        String username = "root";
+        String password = "";
         String jdbc = String.format("jdbc:mysql://%s:%s/%s", hostname, port, dbname);
         return DriverManager.getConnection(jdbc, username, password);
     }

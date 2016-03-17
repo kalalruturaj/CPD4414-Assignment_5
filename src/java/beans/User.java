@@ -15,22 +15,35 @@
  */
 package beans;
 
+import javax.faces.bean.ManagedBean;
+import javax.faces.bean.SessionScoped;
+
 /**
  *
- * @author Len Payne <len.payne@lambtoncollege.ca>
+ * @author Ruturaj
  */
-public class User {
 
+@ManagedBean
+@SessionScoped
+public class User {
+ 
+   
     private int id;
     private String username;
     private String passhash;
+     
+    
 
     public User(int id, String username, String passhash) {
         this.id = id;
         this.username = username;
         this.passhash = passhash;
     }
+    
+    public User() {
+    }
 
+   
     public int getId() {
         return id;
     }

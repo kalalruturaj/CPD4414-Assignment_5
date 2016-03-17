@@ -25,7 +25,7 @@ import javax.faces.bean.ManagedBean;
 
 /**
  *
- * @author Len Payne <len.payne@lambtoncollege.ca>
+ * @author Ruturaj
  */
 @ManagedBean
 @ApplicationScoped
@@ -33,6 +33,7 @@ public class Users {
 
     private List<User> users;
     private static Users instance;
+    
 
     /**
      * No-arg constructor -- retrieves List from DB and sets up singleton
@@ -98,12 +99,6 @@ public class Users {
         return null;
     }
 
-    /**
-     * Retrieve a specific user ID by username
-     *
-     * @param username the username to search for
-     * @return the user ID
-     */
     public int getUserIdByUsername(String username) {
         for (User u : users) {
             if (u.getUsername().equals(username)) {
@@ -113,13 +108,9 @@ public class Users {
         return -1;
     }
 
-    /**
-     * Add a user to the DB
-     *
-     * @param username the username
-     * @param password the password
-     */
-    public void addUser(String username, String password) {
+    
+    public String addUser(String username, String password) {
+       
         try (Connection conn = DBUtils.getConnection()) {
             String passhash = DBUtils.hash(password);
             String sql = "INSERT INTO users (username, passhash) VALUES(?,?)";
@@ -131,5 +122,8 @@ public class Users {
             Logger.getLogger(Users.class.getName()).log(Level.SEVERE, null, ex);
         }
         getUsersFromDB();
+        return "login.xhtml";
     }
+    
+    
 }

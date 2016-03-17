@@ -5,16 +5,22 @@
       xmlns:f="http://xmlns.jcp.org/jsf/core"
       xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
     <h:head>
-        <title>Simple Blog</title>
+              
+        <title>Home Page</title>
     </h:head>
-    <h:body>
-        <h:form>
+    <h:body class="bodd">
+        <h:form >
+          
             <h:dataTable value="#{posts.posts}" var="post">
-                <h:column>
-                    <h:commandLink action="#{posts.viewPost(post)}">#{post.title}</h:commandLink>
+                <h:column >
+                    <h:commandLink class="userName" action="#{posts.viewPost(post)}">#{post.title}</h:commandLink>
                 </h:column>
-                <h:column>
+                <h:column class="userName">
+                    
                     #{users.getUsernameById(post.user_id)}
+                </h:column>
+                <h:column class="userName">
+                    
                 </h:column>
                 <h:column>
                     #{post.createdTime.toLocaleString()}
@@ -26,6 +32,10 @@
             <c:if test="#{!login.loggedIn}">
                 <h:commandButton value="Login" action="login" />
             </c:if>
+             <h:commandButton value="Delete" action="deletePost" />
+             <h:commandButton value="Register" action="registerUser" />
+               <h:commandButton value="View" action="viewPostsByUsers" />
+               #{posts.currentPost.username}
         </h:form>
     </h:body>
 </html>
