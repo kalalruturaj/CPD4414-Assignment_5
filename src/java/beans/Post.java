@@ -21,7 +21,7 @@ import javax.faces.bean.ManagedBean;
 
 /**
  *
- * @author Ruturaj
+ * @author 
  */
 @ManagedBean
 @ApplicationScoped
